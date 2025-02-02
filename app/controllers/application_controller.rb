@@ -1,25 +1,28 @@
 class ApplicationController < ActionController::API
-    before_action :authenticate_request
-  
-    rescue_from ActiveRecord::RecordNotFound, with: :invalid_token
-    rescue_from JWT::DecodeError, with: :decode_error
-  
-    private
-  
-    def authenticate_request
-      header = request.headers['Authorization']
-      header = header.split(' ').last if header
-      decoded = JsonWebToken.decode(header)
-      @current_user = User.find(decoded[:user_id]) if decoded
-    rescue ActiveRecord::RecordNotFound, JWT::DecodeError
-      render json: { errors: 'Unauthorized' }, status: :unauthorized
-    end
-  
-    def invalid_token
-      render json: { error: "Invalid token" }, status: :unauthorized
-    end
-  
-    def decode_error
-      render json: { error: "Decode error" }, status: :unauthorized
-    end
+  before_action :authenticate_request
+
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_unauthorized
+  rescue_from JWT::DecodeError, with: :handle_unauthorized
+  rescue_from JWT::ExpiredSignature, with: :handle_expired_token
+
+  private
+
+  def authenticate_request
+    header = request.headers['Authorization']
+    return handle_unauthorized if header.blank?
+
+    token = header.split(' ').last
+    decoded = JsonWebToken.decode(token)
+    @current_user = User.find(decoded[:user_id]) if decoded
+  rescue ActiveRecord::RecordNotFound, JWT::DecodeError
+    handle_unauthorized
   end
+
+  def handle_unauthorized
+    render json: { errors: 'Unauthorized' }, status: :unauthorized
+  end
+
+  def handle_expired_token
+    render json: { errors: 'Token has expired' }, status: :unauthorized
+  end
+end

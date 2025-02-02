@@ -13,9 +13,9 @@ class JsonWebToken
 
   # Decode a JWT token into a payload
   def self.decode(token)
-    decoded = JWT.decode(token, SECRET_KEY)[0]
-    HashWithIndifferentAccess.new(decoded)
-  rescue JWT::DecodeError => e
-    nil
+    body = JWT.decode(token, SECRET_KEY)[0]
+    HashWithIndifferentAccess.new body
+  rescue JWT::ExpiredSignature, JWT::DecodeError => e
+    raise e
   end
 end

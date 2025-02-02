@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_request
+
   def index
   end
 
@@ -15,6 +17,7 @@ class PostsController < ApplicationController
     # else
     #   render json: @post.errors, status: :unprocessable_entity
     # end
+    render json: { message: "Post created successfully" }, status: :created
   end
 
   def update

@@ -9,6 +9,11 @@ curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d 
 "last_name": "Doe"
 }'
 
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{
+"email": "john@example.com",
+"password": "password123"
+}'
+
 User.last.authenticate("password123")
 it return true of the password are correct
 
