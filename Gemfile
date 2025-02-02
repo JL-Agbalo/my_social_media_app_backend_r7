@@ -48,3 +48,5 @@ group :development do
 end
 
 gem "jwt", "~> 2.10"
+
+gem 'rack-cors', require: 'rack/cors'

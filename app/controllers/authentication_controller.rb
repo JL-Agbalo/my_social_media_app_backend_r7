@@ -21,6 +21,6 @@ class AuthenticationController < ApplicationController
   private
 
   def generate_access_token(user)
-    JsonWebToken.encode({ user_id: user.id }, 24.hours.from_now)
+    JsonWebToken.encode({ user_id: user.id }, 30.minutes.from_now)
   end
 end
