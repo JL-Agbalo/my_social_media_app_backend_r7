@@ -13,7 +13,7 @@
 user1 = User.create!(
   username: "john_doe",
   email: "john@example.com",
-  password: "password123",
+  password: "Password123!",
   first_name: "John",
   last_name: "Doe",
   bio: "I love coding!",
@@ -23,7 +23,7 @@ user1 = User.create!(
 user2 = User.create!(
   username: "jane_doe",
   email: "jane@example.com",
-  password: "securepass",
+  password: "SecurePass123!",
   first_name: "Jane",
   last_name: "Doe",
   bio: "Social media enthusiast",

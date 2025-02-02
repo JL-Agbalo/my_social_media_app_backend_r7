@@ -37,11 +37,12 @@ class Rack::Attack
       '127.0.0.1' == req.ip || '::1' == req.ip
     end
   
-    # Custom response for throttled requests
-    self.throttled_response = lambda do |env|
+    # Custom response for throttled requests (updated)
+    self.throttled_responder = lambda do |env|
       [ 429,  # status
         { 'Content-Type' => 'application/json' },  # headers
         [{ error: 'Throttle limit reached. Retry later.' }.to_json]  # body
       ]
     end
   end
+  

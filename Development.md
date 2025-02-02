@@ -77,3 +77,11 @@ decoded_payload = JsonWebToken.decode(token)
 
 5. **CSRF Protection**:
    - Use CSRF protection if using cookies for authentication.
+
+Adding BlacklistedToken
+
+Database Reset
+rails db:drop
+rails db:create
+rails db:migrate
+rails db:seed
