@@ -10,6 +10,8 @@
 
 
 User.create!([
-  { username: "john_doe", email: "john@example.com", password: "password123", bio: "I love coding!", profile_picture: "https://example.com/john.jpg" },
-  { username: "jane_doe", email: "jane@example.com", password: "securepass", bio: "Social media enthusiast", profile_picture: "https://example.com/jane.jpg" }
+  { username: "john_doe", email: "john@example.com", password: "password123", bio: "I love coding!", profile_picture: "https://example.com/john.jpg", first_name: "John", last_name: "Doe" },
+  { username: "jane_doe", email: "jane@example.com", password: "securepass", bio: "Social media enthusiast", profile_picture: "https://example.com/jane.jpg", first_name: "Jane", last_name: "Doe" }
 ])
+
+# https://chatgpt.com/share/679e3a8f-a390-8001-b0e7-0332e8353696
