@@ -35,6 +35,7 @@ decoded_payload = JsonWebToken.decode(token)
 2. **Validate Inputs**:
 
    - Validate email format and password length on the client side before sending the data to the backend.
+     Done in Front and and Backend Validation (Fix the UI)
 
 3. **Store Tokens Securely**:
 

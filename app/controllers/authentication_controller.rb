@@ -2,8 +2,9 @@ class AuthenticationController < ApplicationController
   skip_before_action :authenticate_request
 
   def login
-    user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
+    login_params = params.require(:authentication).permit(:email, :password)
+    user = User.find_by(email: login_params[:email])
+    if user&.authenticate(login_params[:password])
       access_token = generate_access_token(user)
       decoded_token = JsonWebToken.decode(access_token)
       exp = decoded_token[:exp]
