@@ -35,7 +35,7 @@ decoded_payload = JsonWebToken.decode(token)
 2. **Validate Inputs**:
 
    - Validate email format and password length on the client side before sending the data to the backend.
-     Done in Front and and Backend Validation (Fix the UI)
+   - Done in Front and and Backend Validation (Fix the UI)
 
 3. **Store Tokens Securely**:
 
@@ -57,18 +57,23 @@ decoded_payload = JsonWebToken.decode(token)
 1. **Hash Passwords with bcrypt**:
 
    - Use `bcrypt` to hash and store passwords securely.
+   - Done setup bycrypt
 
 2. **Use JWT for Authentication**:
 
    - Use JWT tokens for stateless authentication. Ensure tokens are signed and have a short expiration time.
+   - TODO Add Refresh Tocken
 
 3. **Rate Limiting**:
 
    - Use `rack-attack` to implement rate limiting and prevent abuse and DDoS attacks.
+   - Done setup Rack attat
+   - TODO Need to Test Rack Attack
 
 4. **Validate Inputs**:
 
    - Validate and sanitize all inputs on the server side to prevent SQL injection and other injection attacks.
+   - Done Validation
 
 5. **CSRF Protection**:
    - Use CSRF protection if using cookies for authentication.
