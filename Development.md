@@ -85,3 +85,25 @@ rails db:drop
 rails db:create
 rails db:migrate
 rails db:seed
+
+You can use curl or Postman to test the login endpoint and ensure that the throttling rules are applied correctly.
+
+# Successful login attempt
+
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{
+"authentication": {
+"email": "john@example.com",
+"password": "Password123!"
+}
+}'
+
+# Exceeding throttle limit
+
+for i in {1..6}; do
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{
+"authentication": {
+"email": "john@example.com",
+"password": "wrongpassword"
+}
+}'
+done

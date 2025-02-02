@@ -3,7 +3,7 @@ class AuthenticationController < ApplicationController
 
   def login
     login_params = params.require(:authentication).permit(:email, :password)
-    user = User.select(:id, :email, :password_digest).find_by(email: login_params[:email])
+    user = User.find_by(email: login_params[:email])
     if user&.authenticate(login_params[:password])
       access_token = generate_access_token(user)
       decoded_token = JsonWebToken.decode(access_token)
