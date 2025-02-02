@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  get 'posts/show'
+  get 'posts/create'
+  get 'posts/update'
+  get 'posts/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
-  post "/signup", to: "users#create"
+  post "/signup", to: "users#create"  
   post "/login", to: "users#login"
   get "/users", to: "users#index"
 

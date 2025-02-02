@@ -11,3 +11,10 @@ curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d 
 
 User.last.authenticate("password123")
 it return true of the password are correct
+
+JWT Authentication
+https://rubygems.org/gems/jwt/versions/1.5.4?locale=en
+
+token = JsonWebToken.encode({ msg: "nard" })
+
+decoded_payload = JsonWebToken.decode(token)
